@@ -1,0 +1,104 @@
+@mixin grad($red1, $red2) {
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient($red1, $red2, $red1); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($red1, $red2, $red1); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($red1, $red2, $red1);
+    background: linear-gradient($red1, $red2, $red1);
+}
+
+%basic-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+html, body {
+  padding: 0px;
+  margin: 0px;
+}
+#wrapper {
+ width: 100%;
+ margin: 0;
+ padding: 1rem 0;
+ display: block;
+  font-family: arial, sans-serif;
+  background: url("../images/bandeau-noël.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center top;
+  background-size: 100%;
+
+}
+
+header {
+  @extend %basic-flex;
+  justify-content: center;
+  width: 50%;
+  min-width: 350px;
+  padding-top: 1rem;
+  height: 200px;
+  margin: 0 auto;
+  background: #086710;
+  box-shadow: 5px 10px 8px rgba(0, 0, 0, 0.4);
+    h1 {
+      margin: 0;
+      color: white;
+      width: 90%;
+      text-align: center;
+  }
+  h4 {
+    color: white;
+    text-align: center;
+    width: 90%;
+    margin: 0rem auto 1rem;
+  }
+}
+#presents {
+  @extend %basic-flex;
+  justify-content: center;
+  width: 90%;
+  margin: 0 auto;
+  .present {
+    @extend %basic-flex;
+    width: 200px;
+    margin: 1rem;
+    background: #999;
+    box-shadow: 5px 10px 8px rgba(0, 0, 0, 0.4);
+    background: #930113;
+    .present-data {
+      width: 100%;
+      h3 {
+        color: white;
+        margin: 1rem 1rem .5rem;
+      }
+      h4 {
+        color: white;
+        float: right;
+        margin: 0 1rem .5rem;
+      }
+    }
+    img {
+      display: block;
+      width: 90%;
+      margin: 1rem auto;
+      box-shadow: 5px 10px 8px rgba(0, 0, 0, 0.4); 
+    }
+    a {
+      color: white;
+      width: 100%;
+      display: block;
+      width: 100%;
+      text-align: center;
+      &:visited {
+        color: gray;
+      }
+      &:hover {
+        color: #FF341A;
+      }
+    }
+    p {
+      color: white;
+      text-align: center;
+      margin: 1rem 1rem;
+    }
+  }
+}

@@ -1,0 +1,82 @@
+@charset "UTF-8";
+header, #presents, #presents .present {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center; }
+
+html, body {
+  padding: 0px;
+  margin: 0px; }
+
+#wrapper {
+  width: 100%;
+  margin: 0;
+  padding: 1rem 0;
+  display: block;
+  font-family: arial, sans-serif;
+  background: url("../images/bandeau-noël.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center top;
+  background-size: 100%; }
+
+header {
+  justify-content: center;
+  width: 50%;
+  min-width: 350px;
+  padding-top: 1rem;
+  height: 200px;
+  margin: 0 auto;
+  background: #086710;
+  box-shadow: 5px 10px 8px rgba(0, 0, 0, 0.4); }
+  header h1 {
+    margin: 0;
+    color: white;
+    width: 90%;
+    text-align: center; }
+  header h4 {
+    color: white;
+    text-align: center;
+    width: 90%;
+    margin: 0rem auto 1rem; }
+
+#presents {
+  justify-content: center;
+  width: 90%;
+  margin: 0 auto; }
+  #presents .present {
+    width: 200px;
+    margin: 1rem;
+    background: #999;
+    box-shadow: 5px 10px 8px rgba(0, 0, 0, 0.4);
+    background: #930113; }
+    #presents .present .present-data {
+      width: 100%; }
+      #presents .present .present-data h3 {
+        color: white;
+        margin: 1rem 1rem .5rem; }
+      #presents .present .present-data h4 {
+        color: white;
+        float: right;
+        margin: 0 1rem .5rem; }
+    #presents .present img {
+      display: block;
+      width: 90%;
+      margin: 1rem auto;
+      box-shadow: 5px 10px 8px rgba(0, 0, 0, 0.4); }
+    #presents .present a {
+      color: white;
+      width: 100%;
+      display: block;
+      width: 100%;
+      text-align: center; }
+      #presents .present a:visited {
+        color: gray; }
+      #presents .present a:hover {
+        color: #FF341A; }
+    #presents .present p {
+      color: white;
+      text-align: center;
+      margin: 1rem 1rem; }
+
+/*# sourceMappingURL=styles.css.map */
