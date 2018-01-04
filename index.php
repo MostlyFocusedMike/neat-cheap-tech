@@ -10,7 +10,7 @@
     <meta name="author" content="Mike Cronin">
     <meta name="description" content="My christmas list">
     <title>neat cheap tech</title>
-    <link rel="stylesheet" href="css/styles.css" type="text/css" /> 
+    <link rel="stylesheet" href="css/styles.min.css" type="text/css" /> 
     <link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
   </head>
   <body>
