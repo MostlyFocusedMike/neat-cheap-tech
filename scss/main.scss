@@ -1,104 +1,304 @@
-@mixin grad($red1, $red2) {
+@mixin grad($color1, $color2) {
     background: red; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient($red1, $red2, $red1); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient($red1, $red2, $red1); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient($red1, $red2, $red1);
-    background: linear-gradient($red1, $red2, $red1);
+    background: -webkit-linear-gradient($color1, $color2); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($color1, $color2); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($color1, $color2);
+    background: linear-gradient($color1, $color2);
 }
-
-%basic-flex {
+%compat-flex {
+  display: -webkit-flex;
   display: flex;
+  -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
+}
+%basic-flex {
+  @extend %compat-flex;
   align-items: center;
 }
+%flex-vert {
+  @extend %compat-flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+// MAIN SASS ////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+
 html, body {
-  padding: 0px;
-  margin: 0px;
-}
-#wrapper {
- width: 100%;
- margin: 0;
- padding: 1rem 0;
- display: block;
-  font-family: arial, sans-serif;
-  background: url("../images/banner.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center top;
-  background-size: 100%;
-
-}
-
-header {
-  @extend %basic-flex;
-  justify-content: center;
-  width: 50%;
-  min-width: 350px;
-  padding-top: 1rem;
-  height: 200px;
-  margin: 0 auto;
-  background: #086710;
-  box-shadow: 5px 10px 8px rgba(0, 0, 0, 0.4);
-    h1 {
-      margin: 0;
-      color: white;
-      width: 90%;
-      text-align: center;
-  }
-  h4 {
-    color: white;
-    text-align: center;
-    width: 90%;
-    margin: 0rem auto 1rem;
-  }
-}
-#presents {
-  @extend %basic-flex;
-  justify-content: center;
-  width: 90%;
-  margin: 0 auto;
-  .present {
-    @extend %basic-flex;
-    width: 200px;
-    margin: 1rem;
-    background: #999;
-    box-shadow: 5px 10px 8px rgba(0, 0, 0, 0.4);
-    background: #930113;
-    .present-data {
-      width: 100%;
-      h3 {
-        color: white;
-        margin: 1rem 1rem .5rem;
-      }
-      h4 {
-        color: white;
-        float: right;
-        margin: 0 1rem .5rem;
-      }
-    }
-    img {
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  font-size: 14px;
+  background: #25356B;
+  #wrapper {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    display: block;
+    font-family: arial, sans-serif;
+    z-index: 10;
+    header {
       display: block;
+      div#bg {
+        @extend %basic-flex;
+        align-items: flex-end;  
+        margin: 0;
+        width: 100%;
+        height: 10rem;
+        @include grad(#444, #222);
+        div#circuit-bg {
+          @extend %basic-flex;
+          justify-content: center;
+          width: 100%;
+          height: 9rem;
+          margin: 0;
+          background-image: url("../images/circuit-bg.jpg");
+          background-position: center;
+          webkit-background-size: cover;
+          moz-background-size: cover;
+          o-background-size: cover;
+          background-size: cover;
+          div#white-border {
+            @extend %basic-flex;
+            justify-content: center;
+            width: 100%; // this allows it to scale to fit the small phones without weird side space
+            max-width: 415px; // exact width in px to ensure perfect fit on large phones
+            height: 40%;
+            margin: 0;
+            border: .6rem solid white;
+            h1#logo {
+              font-size: 3rem;
+              font-family: "Oswald", sans-serif;
+              font-weight: 700;
+              margin: 0 0 .7rem;
+              color: white;
+              text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+            }
+          }
+        }
+      }
+    }
+    div#sort {
+      @extend %basic-flex;
+      justify-content: center;
+      width: 100%;
+      height: 3rem;
+      margin: 0 0 1rem 0;
+      z-index: 100;
+      @include grad(#444, #222);
+      #mini-logo {
+        font-size: 1.5rem;
+        font-family: "Oswald", sans-serif;
+        font-weight: 400;
+        line-height: 10%; // centering this font was giving me problems so that's why there's line height
+        margin: 0 .3rem 0 0;
+        color: white;
+        text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
+      }
+      form {
+        margin: 0;
+        select {
+          color: #404040;
+          background: white;
+        }
+      }
+    }
+    // the .sticky class is added with JS to the sort bar
+    .sticky {
+      width: 100%;
+      position: fixed;
+      top: 0;
+    }
+    // the buffer only appears once the sort bar has been stuck
+    // see JS for more info on the sticky and buffer elements 
+    #buffer {
+      margin: 0 0 1rem 0;
+      width: 100%;
+      height: 3rem;
+      display: none;
+    }  
+    #items {
+      @extend %basic-flex;
+      justify-content: center;
+      margin: 0 auto;
       width: 90%;
-      margin: 1rem auto;
-      box-shadow: 5px 10px 8px rgba(0, 0, 0, 0.4); 
+      min-width: 380px; // px perfect for screen size
+      .item-box {
+        @extend %flex-vert;
+        margin: .8rem;
+        width: 23rem;
+        height: 34rem;
+        border-radius: 5% 5% 0 0;
+        box-shadow: .4rem .4rem .8rem rgba(0, 0, 0, 0.2);
+        background: #FBFBFB;
+        h2.item-name{
+          margin: 1rem auto 0;
+          width: 90%;
+          height: 3.5rem;
+          font-weight: normal;
+          display: block;
+          color: #404040;
+        }
+        div.pic-holder { // centerts picture vertically without moving price
+          height: 300px;
+          @extend %basic-flex;
+          background: white;
+          box-shadow: 0rem .2rem 1rem rgba(0, 0, 0, 0.1);
+          div.item-picture-price{ // centers picture horizontally and sticks price to img corner
+            margin: 0 auto;
+            width: 100%;
+            display: block;
+            position: relative;
+            background: white;
+            img {
+              margin: 0 auto;
+              max-width: 100%;
+              max-height: 300px;
+              display: block;
+            }
+            p.item-price{
+              margin: 0;  
+              height: auto;
+              position: absolute;
+              right: 0;
+              bottom: 0rem;
+              z-index: 10;
+              padding: .2rem .4rem .05rem .4rem;
+              font-size: 1.1rem;
+              color: white;
+              background: #404040;
+            }
+          }
+        }
+        p.item-desc {
+          margin: 0 auto;
+          width: 75%;
+          height: 2.5rem;
+          display: inline-block;
+          text-align: center;
+          font-size: 1rem;
+          display: block;
+          color: #404040;
+        }
+        div.line {
+          margin: 0 auto;
+          width: 80%;
+          height: .1rem;
+          border-bottom: .2rem solid #D1D1D1;
+        }
+        div.item-link-rate {
+          @extend %basic-flex;
+          justify-content: space-between;
+          margin: 0 auto .4rem;
+          width: 70%;
+          height: 2rem;
+          div.rating {
+            @extend %basic-flex;
+            justify-content: space-between;
+            margin: .5rem 0 .5rem;
+            width: 41%;
+            height: 2rem;
+          }
+          a {
+            margin: 0;
+            width: 4rem;
+            display: block;
+            font-size: 1rem;
+            text-decoration: none;
+            text-align: center;
+            text-decoration: none;
+            padding: .25rem 0 .25rem; 
+            border: 1px solid #D1D1D1;
+            @include grad(#fff, #E0E0E0);
+            &:link {
+              color: #404040;
+            }
+            &:visited {
+              color: #404040;
+            }
+            &:hover {
+              color: #404040;
+              @include grad(#E0E0E0, #fff);
+            }
+            &:active {
+              @include grad(#fff, #E0E0E0);
+              color: #404040;
+            }
+          }
+        }
+      }  
     }
-    a {
-      color: white;
+    footer {
       width: 100%;
-      display: block;
-      width: 100%;
-      text-align: center;
-      &:visited {
-        color: gray;
+      height: 2.5rem;
+      color: #CCC;
+      margin: 1rem 0 0 0;
+      @include grad(#444, #222);
+      background: #111;
+      p {
+        padding: .5rem;
+        text-align: center;
       }
-      &:hover {
-        color: #FF341A;
-      }
-    }
-    p {
-      color: white;
-      text-align: center;
-      margin: 1rem 1rem;
     }
   }
 }
+// the diagonal div is outside the wrapper 
+#diagonal {
+  width: 150rem;
+  height: 50rem;
+  position: fixed;
+  top: -22rem;
+  left: -10rem;
+  overflow: hidden;
+  display: block;
+  background: #D9F0FF;
+  transform: rotate(5deg);
+}
+
+// heart section, ///////////////////////////////////////////////////////
+// the loop function that assigns the rating color values
+// has to be outside any nesting rules, so the entire hearts section is
+// here for readability ////////////
+$square: 1.5rem;
+$bot: 14%;
+$left: 14%; // lower to the left, higher to the right
+$right: 38%;
+.heart-container {
+  width: $square;
+  height: $square;
+  .heart {
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: relative;
+  }
+  .heart:before, .heart:after {
+      content: "";
+      width: 50%;
+      height: 80%;
+      position: absolute;
+      left: $left;
+      bottom: $bot;
+      border-radius: 200px 200px 0 0;
+      background: #FFD6CE;
+      transform: rotate(-45deg);
+  }
+  .heart:after {
+      left: $right;
+      bottom: $bot;
+      transform: rotate(45deg);
+  }
+}
+// this loop will properly color each star per rating 
+// so 5 star rating will light up all 5 stars, while
+// a 3 star rating will light up the first three 
+// 1- 1, 2- 1 2, 3- 1 2 3, 4- 1 2 3 4, 5- 1 2 3 4 5
+@for $i from 1 through 4 {
+  @for $n from 1 through $i {
+   .rating-#{$i} .heart-#{$n}:before, .rating-#{$i} .heart-#{$n}:after {
+     background: #FF2F2F;
+   }
+  }
+}
+// That's all folks
