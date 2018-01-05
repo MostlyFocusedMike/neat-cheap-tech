@@ -1,6 +1,7 @@
 *.swp
 *.swo
 *.map
+.sass*
 .DS_Store
 .sass*
 Session.vim
