@@ -2,4 +2,5 @@
 *.swo
 *.map
 .DS_Store
+.sass*
 Session.vim

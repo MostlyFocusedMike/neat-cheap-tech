@@ -47,9 +47,9 @@ html, body {
           margin: 0;
           background-image: url("../images/circuit-bg.jpg");
           background-position: center;
-          webkit-background-size: cover;
-          moz-background-size: cover;
-          o-background-size: cover;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
           background-size: cover; }
           html #wrapper header div#bg div#circuit-bg div#white-border, body #wrapper header div#bg div#circuit-bg div#white-border {
             justify-content: center;
@@ -62,7 +62,9 @@ html, body {
               font-size: 3rem;
               font-family: "Oswald", sans-serif;
               font-weight: 700;
-              margin: 0 0 .7rem;
+              margin: 0 0 .7rem 0;
+              padding: 0;
+              height: 4.5rem;
               color: white;
               text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); }
     html #wrapper div#sort, body #wrapper div#sort {
@@ -167,7 +169,7 @@ html, body {
           height: 2rem; }
           html #wrapper #items .item-box div.item-link-rate div.rating, body #wrapper #items .item-box div.item-link-rate div.rating {
             justify-content: space-between;
-            margin: .5rem 0 .5rem;
+            margin: .5rem 0 .5rem 0;
             width: 41%;
             height: 2rem; }
           html #wrapper #items .item-box div.item-link-rate a, body #wrapper #items .item-box div.item-link-rate a {
